@@ -5,10 +5,10 @@ from datetime import datetime
 
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    # checked = db.Column(db.Boolean, server_default=expression.false(), default=False)
     data = db.Column(db.String(10000))
     date = db.Column(db.DateTime(timezone=True), default=datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    checked = db.Column(db.Boolean, server_default=expression.false(), default=False)
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)

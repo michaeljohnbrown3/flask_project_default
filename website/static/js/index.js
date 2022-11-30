@@ -1,5 +1,5 @@
-function deleteTodo(todoId) {
-  fetch("/delete-todo", {
+function postRoute(route, todoId) {
+  fetch(route, {
     method: "POST",
     body: JSON.stringify({ todoId: todoId }),
   }).then((_res) => {
@@ -7,11 +7,14 @@ function deleteTodo(todoId) {
   });
 }
 
+function deleteTodo(todoId) {
+  postRoute("/delete-todo", todoId);
+}
+
 function checkTodo(todoId) {
-  fetch("/check-todo", {
-    method: "POST",
-    body: JSON.stringify({ todoId: todoId }),
-  }).then((_res) => {
-    window.location.href = "/";
-  });
+  postRoute("/check-todo", todoId);
+}
+
+function uncheckTodo(todoId) {
+  postRoute("/uncheck-todo", todoId);
 }

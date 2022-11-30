@@ -41,6 +41,19 @@ def check_todo():
     todo = Todo.query.get(todoId)
     if todo:
         if todo.user_id == current_user.id:
-            print('Updated!')
+            todo.checked = True
+            db.session.commit()
+
+    return jsonify({})
+
+@views.route('/uncheck-todo', methods=['POST'])
+def uncheck_todo():
+    todo = json.loads(request.data)
+    todoId = todo['todoId']
+    todo = Todo.query.get(todoId)
+    if todo:
+        if todo.user_id == current_user.id:
+            todo.checked = False
+            db.session.commit()
 
     return jsonify({})

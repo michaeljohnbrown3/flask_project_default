@@ -3,10 +3,21 @@
 <ul class="list-group list-group-flush" id="notes">
   {% for todo in user.todos %}
   <li class="list-group-item">
+    {% if todo.checked == false %}
     <button type="button" class="btn" id="empty-check" onClick="checkTodo({{ todo.id }})">
       <span aria-hidden>&#11036;</span>
+    </button>
+    <button type="button" class="btn d-none" id="green-check" onClick="uncheckTodo({{ todo.id }})">
       <span aria-hidden>&#9989;</span>
     </button>
+    {% else %}
+    <button type="button" class="btn d-none" id="empty-check" onClick="checkTodo({{ todo.id }})">
+      <span aria-hidden>&#11036;</span>
+    </button>
+    <button type="button" class="btn" id="green-check" onClick="uncheckTodo({{ todo.id }})">
+      <span aria-hidden>&#9989;</span>
+    </button>
+    {% endif %}
     <button type="button" class="btn btn-primary" onClick="">
       <span aria-hidden="true">&#9651; </span>
     </button>
